@@ -173,6 +173,106 @@ namespace EFDBFirst
             //        ProductName = x.Key,
             //        Total = Math.Round(x.Sum(y => y.od.UnitPrice * y.od.Quantity * Convert.ToDecimal(1 - y.od.Discount)), 2)
             //    }).ToList();
+
+
+
+            //calisanlarim kac tane siparis almis?
+            var sorgu11 = from dbEmployee in db.Employees
+                          join dbOrder in db.Orders on dbEmployee.EmployeeID equals dbOrder.EmployeeID
+                          join dbOrderDetail in db.Order_Details on dbOrder.OrderID equals dbOrderDetail.OrderID
+                          group new
+                          {
+                              dbEmployee,
+                              dbOrderDetail
+                          } by new
+                          {
+                              dbEmployee.FirstName,
+                              dbEmployee.LastName
+                          }
+                into gp
+                          select new
+                          {
+                              Employee = gp.Key.FirstName + " " + gp.Key.LastName,
+                              Total = gp.Sum(x => x.dbOrderDetail.Quantity)
+                          };
+            dgvTest.DataSource = sorgu11.OrderByDescending(x => x.Total).ToList();
+            var sorgu12 = db.Order_Details
+                .Join(db.Orders,
+                    od => od.OrderID,
+                    o => o.OrderID,
+                    (od, o) => new { od, o })
+                .Join(db.Employees,
+                    gg => gg.o.EmployeeID,
+                    emp => emp.EmployeeID,
+                    (gg, emp) => new { gg, emp }
+                ).GroupBy(x => x.emp.FirstName + " " + x.emp.LastName)
+                .Select(x => new
+                {
+                    Employee = x.Key,
+                    Total = x.Sum(y => y.gg.od.Quantity)
+                })
+                .OrderByDescending(x => x.Total)
+                .ToList();
+            dgvTest.DataSource = sorgu12;
+            //Hangi kategoriden toplam kac adet siparisim var
+            var sorgu13 = from dbCategory in db.Categories
+                          join dbProduct in db.Products on dbCategory.CategoryID equals dbProduct.CategoryID
+                          join dbOrderDetail in db.Order_Details on dbProduct.ProductID equals dbOrderDetail.ProductID
+                          group new
+                          {
+                              dbCategory,
+                              dbOrderDetail
+                          } by new
+                          {
+                              dbCategory.CategoryName
+                          }
+                into gp
+                          select new
+                          {
+                              gp.Key.CategoryName,
+                              Total = gp.Sum(x => x.dbOrderDetail.Quantity)
+                          };
+            dgvTest.DataSource = sorgu13.OrderByDescending(x => x.Total).ToList();
+
+            //siparis no - toplam siparis tutari
+            var sorgu14 = from orderDetail in db.Order_Details
+                          group new
+                          {
+                              orderDetail
+                          } by new
+                          {
+                              orderDetail.OrderID
+                          }
+                into gp
+                          select new
+                          {
+                              gp.Key.OrderID,
+                              Total = gp.Sum(x => x.orderDetail.UnitPrice * x.orderDetail.Quantity)
+                          };
+            var sorgu15 = db.Order_Details
+                .GroupBy(x => x.OrderID)
+                .ToList()
+                .Select(x => new
+                {
+                    x.Key,
+                    Total = $"{x.Sum(y => y.Quantity * y.UnitPrice * Convert.ToDecimal(1 - y.Discount)):c2}"
+                }).ToList();
+
+            dgvTest.DataSource = sorgu15;
+
+            //Calisanlarim hangi kategoriden kactane siparis vermis?
+
+
+
+            var rawQuery = db.Database.SqlQuery<RawQuery>(
+           "select p.ProductName,SUM(od.UnitPrice*od.Quantity*(1-od.Discount)) Total from Products p join [Order Details] od on p.ProductID = od.ProductID group by p.ProductName order by p.ProductName");
+            dgvTest.DataSource = rawQuery.ToList();
         }
+    }
+
+    public class RawQuery
+    {
+        public string ProductName { get; set; }
+        public double Total { get; set; }
     }
 }
