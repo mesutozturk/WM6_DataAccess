@@ -77,16 +77,53 @@ namespace EFDBFirst
             dgvTest.DataSource = sorgu5;
 
             var sorgu6 = from p in db.Products
-                where p.UnitPrice >= db.Products.Average(x => x.UnitPrice)
-                orderby p.UnitPrice descending
-                select new
-                {
-                    p.ProductName,
-                    Fiyat = p.UnitPrice,
-                    p.Category.CategoryName
-                };
+                         where p.UnitPrice >= db.Products.Average(x => x.UnitPrice)
+                         orderby p.UnitPrice descending
+                         select new
+                         {
+                             p.ProductName,
+                             Fiyat = p.UnitPrice,
+                             p.Category.CategoryName
+                         };
 
             dgvTest.DataSource = sorgu6.ToList();
+
+            //hangi kategoriden kac tane urunum var
+
+            var sorgu7 = db.Products
+                .Where(x => x.CategoryID.HasValue && x.SupplierID.HasValue)
+                .GroupBy(x => new { x.Category.CategoryName, x.Supplier.CompanyName })
+                .Select(x => new
+                {
+                    CategoryName = x.Key.CategoryName,
+                    CompanyName = x.Key.CompanyName,
+                    Total = x.Count()
+                })
+                .OrderBy(x => x.CategoryName)
+                .ToList();
+            dgvTest.DataSource = sorgu7;
+
+            var sorgu8 = from product in db.Products
+                join category in db.Categories on product.CategoryID equals category.CategoryID
+                join supp in db.Suppliers on product.SupplierID equals supp.SupplierID
+                group new
+                {
+                    category,
+                    supp
+                } by new
+                {
+                    category.CategoryName,
+                    supp.CompanyName
+                }
+                into gp
+                orderby gp.Key.CategoryName ascending
+                select new
+                {
+                    CategoryName = gp.Key.CategoryName,
+                    CompanyName = gp.Key.CompanyName,
+                    Total = gp.Count()
+                };
+            dgvTest.DataSource = sorgu8.ToList();
         }
     }
 }
