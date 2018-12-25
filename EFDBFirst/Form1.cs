@@ -100,30 +100,79 @@ namespace EFDBFirst
                     Total = x.Count()
                 })
                 .OrderBy(x => x.CategoryName)
+                .ThenBy(x => x.CompanyName)
                 .ToList();
             dgvTest.DataSource = sorgu7;
 
             var sorgu8 = from product in db.Products
-                join category in db.Categories on product.CategoryID equals category.CategoryID
-                join supp in db.Suppliers on product.SupplierID equals supp.SupplierID
-                group new
-                {
-                    category,
-                    supp
-                } by new
-                {
-                    category.CategoryName,
-                    supp.CompanyName
-                }
+                         join category in db.Categories on product.CategoryID equals category.CategoryID
+                         join supp in db.Suppliers on product.SupplierID equals supp.SupplierID
+                         group new
+                         {
+                             category,
+                             supp
+                         } by new
+                         {
+                             category.CategoryName,
+                             supp.CompanyName
+                         }
                 into gp
-                orderby gp.Key.CategoryName ascending
-                select new
-                {
-                    CategoryName = gp.Key.CategoryName,
-                    CompanyName = gp.Key.CompanyName,
-                    Total = gp.Count()
-                };
+                         orderby gp.Key.CategoryName ascending, gp.Key.CategoryName ascending
+                         select new
+                         {
+                             CategoryName = gp.Key.CategoryName,
+                             CompanyName = gp.Key.CompanyName,
+                             Total = gp.Count()
+                         };
             dgvTest.DataSource = sorgu8.ToList();
+
+            // hangi urunden ne kadarlik siparis verilmis (tl bazinda)
+
+            var sorgu9 = db.Order_Details
+                .Join(db.Products,
+                od => od.ProductID,
+                product => product.ProductID,
+                (od, product) => new { od, product })
+                .GroupBy(x => x.product.ProductName)
+                .OrderBy(x => x.Key)
+                .ToList()
+                .Select(x => new
+                {
+                    x.Key,
+                    Total = Math.Round(x.Sum(y => y.od.UnitPrice * y.od.Quantity * Convert.ToDecimal(1 - y.od.Discount)), 2)
+                });
+
+            dgvTest.DataSource = sorgu9.ToList();
+
+            var sorgu10 = from prod in db.Products
+                          join od in db.Order_Details on prod.ProductID equals od.ProductID
+                          group new
+                          {
+                              prod,
+                              od
+                          } by new
+                          {
+                              prod.ProductName
+                          }
+                into gp
+                          orderby gp.Key.ProductName
+                          select new
+                          {
+                              gp.Key.ProductName,
+                              Total = gp.Sum(x => x.od.UnitPrice * x.od.Quantity)
+                          };
+
+            dgvTest.DataSource = sorgu10.ToList();
+
+            //var data = sorgu10.ToList();
+
+
+            //dgvTest.DataSource = data.GroupBy(x => x.ProductName)
+            //    .Select(x => new
+            //    {
+            //        ProductName = x.Key,
+            //        Total = Math.Round(x.Sum(y => y.od.UnitPrice * y.od.Quantity * Convert.ToDecimal(1 - y.od.Discount)), 2)
+            //    }).ToList();
         }
     }
 }
