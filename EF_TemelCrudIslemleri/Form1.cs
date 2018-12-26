@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using EF_TemelCrudIslemleri.ViewModels;
 
 namespace EF_TemelCrudIslemleri
 {
@@ -26,9 +27,17 @@ namespace EF_TemelCrudIslemleri
         private void KategorileriGetir()
         {
             NorthwindEntities db = new NorthwindEntities();
-            cmbKategori.DataSource = db.Categories.OrderBy(x => x.CategoryName).ToList();
-            cmbKategori.DisplayMember = "CategoryName";
-            cmbKategori.ValueMember = "CategoryID";
+            cmbKategori.DataSource = db.Categories
+                .OrderBy(x => x.CategoryName)
+                .Select(x => new CategoryViewModel()
+                {
+                    CategoryID = x.CategoryID,
+                    CategoryName = x.CategoryName,
+                    ProductCount = x.Products.Count
+                })
+                .ToList();
+            //cmbKategori.DisplayMember = "CategoryName";
+            //cmbKategori.ValueMember = "CategoryID";
         }
 
         private void btnKatKaydet_Click(object sender, EventArgs e)
@@ -66,19 +75,28 @@ namespace EF_TemelCrudIslemleri
 
         private void cmbKategori_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cmbKategori.SelectedItem== null) return;
-            Category cat = cmbKategori.SelectedItem as Category;
-            
+            if (cmbKategori.SelectedItem == null) return;
+            CategoryViewModel cat = cmbKategori.SelectedItem as CategoryViewModel;
+
 
             NorthwindEntities db = new NorthwindEntities();
             //lstUrunler.DataSource = db.Products
             //    .Where(x => x.CategoryID == cat.CategoryID)
             //    .OrderBy(x => x.ProductName)
             //    .ToList();
+            //lstUrunler.DisplayMember = "ProductName";
+
             lstUrunler.DataSource = db.Categories
                 .First(x => x.CategoryID == cat.CategoryID)
-                .Products.ToList();
-            lstUrunler.DisplayMember = "ProductName";
+                .Products
+                .Select(x => new ProductViewModel()
+                {
+                    ProductID = x.ProductID,
+                    ProductName = x.ProductName,
+                    UnitPrice = x.UnitPrice
+                })
+                .OrderBy(x => x.ProductName)
+                .ToList();
         }
     }
 }
