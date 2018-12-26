@@ -111,7 +111,7 @@ namespace EFDBFirst
                              category.CategoryName,
                              supp.CompanyName
                          }
-                into gp
+                         into gp
                          orderby gp.Key.CategoryName ascending, gp.Key.CategoryName ascending
                          select new
                          {
@@ -149,7 +149,7 @@ namespace EFDBFirst
                           {
                               prod.ProductName
                           }
-                into gp
+                          into gp
                           orderby gp.Key.ProductName
                           select new
                           {
@@ -184,7 +184,7 @@ namespace EFDBFirst
                               dbEmployee.FirstName,
                               dbEmployee.LastName
                           }
-                into gp
+                          into gp
                           select new
                           {
                               Employee = gp.Key.FirstName + " " + gp.Key.LastName,
