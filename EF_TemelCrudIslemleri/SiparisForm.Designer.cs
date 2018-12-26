@@ -81,6 +81,7 @@
             // 
             // lstSepet
             // 
+            this.lstSepet.ContextMenuStrip = this.cmsSepet;
             this.lstSepet.FormattingEnabled = true;
             this.lstSepet.Location = new System.Drawing.Point(201, 44);
             this.lstSepet.Name = "lstSepet";
@@ -181,11 +182,13 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label1.ForeColor = System.Drawing.Color.Red;
             this.label1.Location = new System.Drawing.Point(201, 367);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(208, 18);
             this.label1.TabIndex = 13;
-            this.label1.Text = "label1";
+            this.label1.Text = "Sipariş Tutarı : 0 ₺";
             // 
             // nNakliyeUcreti
             // 
