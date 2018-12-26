@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Drawing;
 using System.Linq;
@@ -48,7 +49,7 @@ namespace EF_TemelCrudIslemleri
 
             cmbUrunKategori.DataSource = kategoriler2;
             cmbKategori.DataSource = kategoriler1;
-            
+
             //cmbKategori.DisplayMember = "CategoryName";
             //cmbKategori.ValueMember = "CategoryID";
         }
@@ -163,6 +164,32 @@ namespace EF_TemelCrudIslemleri
                     }
                 }
                 MessageBox.Show(EntityHelper.ValidationMessage(ex), "Bir Hata Olustu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void silToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (lstUrunler.SelectedItem == null) return;
+
+            var urunId = (lstUrunler.SelectedItem as ProductViewModel).ProductID;
+            var cevap = MessageBox.Show("Secili urunu silmek istiyor musunuz?", "Urun silme",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (cevap != DialogResult.Yes) return;
+            try
+            {
+                NorthwindEntities db = new NorthwindEntities();
+                var urun = db.Products.Find(urunId);
+                db.Products.Remove(urun);
+                MessageBox.Show($"{db.SaveChanges()} kayit silindi");
+                KategorileriGetir();
+            }
+            catch (DbUpdateException ex)
+            {
+                MessageBox.Show("Silmek istediginiz kayit baska bir tabloda kullanildigi icin silemezsiniz");
             }
             catch (Exception ex)
             {

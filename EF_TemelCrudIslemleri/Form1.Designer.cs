@@ -40,9 +40,12 @@
             this.cmbUrunKategori = new System.Windows.Forms.ComboBox();
             this.btnUrunGuncelle = new System.Windows.Forms.Button();
             this.gbUrun = new System.Windows.Forms.GroupBox();
+            this.cmsUrunSil = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.silToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.ep1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nuFiyat)).BeginInit();
             this.gbUrun.SuspendLayout();
+            this.cmsUrunSil.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmbKategori
@@ -85,6 +88,7 @@
             // 
             // lstUrunler
             // 
+            this.lstUrunler.ContextMenuStrip = this.cmsUrunSil;
             this.lstUrunler.FormattingEnabled = true;
             this.lstUrunler.Location = new System.Drawing.Point(6, 19);
             this.lstUrunler.Name = "lstUrunler";
@@ -144,6 +148,20 @@
             this.gbUrun.TabStop = false;
             this.gbUrun.Text = "Ürün";
             // 
+            // cmsUrunSil
+            // 
+            this.cmsUrunSil.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.silToolStripMenuItem});
+            this.cmsUrunSil.Name = "cmsUrunSil";
+            this.cmsUrunSil.Size = new System.Drawing.Size(181, 48);
+            // 
+            // silToolStripMenuItem
+            // 
+            this.silToolStripMenuItem.Name = "silToolStripMenuItem";
+            this.silToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.silToolStripMenuItem.Text = "Sil";
+            this.silToolStripMenuItem.Click += new System.EventHandler(this.silToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -161,6 +179,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nuFiyat)).EndInit();
             this.gbUrun.ResumeLayout(false);
             this.gbUrun.PerformLayout();
+            this.cmsUrunSil.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,6 +198,8 @@
         private System.Windows.Forms.NumericUpDown nuFiyat;
         private System.Windows.Forms.TextBox txtUrunAdi;
         private System.Windows.Forms.GroupBox gbUrun;
+        private System.Windows.Forms.ContextMenuStrip cmsUrunSil;
+        private System.Windows.Forms.ToolStripMenuItem silToolStripMenuItem;
     }
 }
 
