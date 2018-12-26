@@ -151,5 +151,11 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EFDBFirst\EFDBFirst.csproj">
+      <Project>{DD2A07AA-78EB-4EA1-A10E-2BDC3A2CFC8E}</Project>
+      <Name>EFDBFirst</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

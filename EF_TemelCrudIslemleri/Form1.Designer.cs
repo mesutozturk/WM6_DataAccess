@@ -35,7 +35,14 @@
             this.btnKatKaydet = new System.Windows.Forms.Button();
             this.ep1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.lstUrunler = new System.Windows.Forms.ListBox();
+            this.txtUrunAdi = new System.Windows.Forms.TextBox();
+            this.nuFiyat = new System.Windows.Forms.NumericUpDown();
+            this.cmbUrunKategori = new System.Windows.Forms.ComboBox();
+            this.btnUrunGuncelle = new System.Windows.Forms.Button();
+            this.gbUrun = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.ep1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nuFiyat)).BeginInit();
+            this.gbUrun.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmbKategori
@@ -79,17 +86,70 @@
             // lstUrunler
             // 
             this.lstUrunler.FormattingEnabled = true;
-            this.lstUrunler.Location = new System.Drawing.Point(169, 13);
+            this.lstUrunler.Location = new System.Drawing.Point(6, 19);
             this.lstUrunler.Name = "lstUrunler";
             this.lstUrunler.Size = new System.Drawing.Size(182, 199);
             this.lstUrunler.TabIndex = 4;
+            this.lstUrunler.SelectedIndexChanged += new System.EventHandler(this.lstUrunler_SelectedIndexChanged);
+            // 
+            // txtUrunAdi
+            // 
+            this.txtUrunAdi.Location = new System.Drawing.Point(195, 18);
+            this.txtUrunAdi.Name = "txtUrunAdi";
+            this.txtUrunAdi.Size = new System.Drawing.Size(149, 20);
+            this.txtUrunAdi.TabIndex = 5;
+            // 
+            // nuFiyat
+            // 
+            this.nuFiyat.DecimalPlaces = 2;
+            this.nuFiyat.Location = new System.Drawing.Point(195, 45);
+            this.nuFiyat.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.nuFiyat.Name = "nuFiyat";
+            this.nuFiyat.Size = new System.Drawing.Size(149, 20);
+            this.nuFiyat.TabIndex = 6;
+            // 
+            // cmbUrunKategori
+            // 
+            this.cmbUrunKategori.FormattingEnabled = true;
+            this.cmbUrunKategori.Location = new System.Drawing.Point(195, 72);
+            this.cmbUrunKategori.Name = "cmbUrunKategori";
+            this.cmbUrunKategori.Size = new System.Drawing.Size(149, 21);
+            this.cmbUrunKategori.TabIndex = 7;
+            // 
+            // btnUrunGuncelle
+            // 
+            this.btnUrunGuncelle.Location = new System.Drawing.Point(195, 99);
+            this.btnUrunGuncelle.Name = "btnUrunGuncelle";
+            this.btnUrunGuncelle.Size = new System.Drawing.Size(149, 42);
+            this.btnUrunGuncelle.TabIndex = 8;
+            this.btnUrunGuncelle.Text = "Ürün Güncelle";
+            this.btnUrunGuncelle.UseVisualStyleBackColor = true;
+            this.btnUrunGuncelle.Click += new System.EventHandler(this.btnUrunGuncelle_Click);
+            // 
+            // gbUrun
+            // 
+            this.gbUrun.Controls.Add(this.lstUrunler);
+            this.gbUrun.Controls.Add(this.btnUrunGuncelle);
+            this.gbUrun.Controls.Add(this.txtUrunAdi);
+            this.gbUrun.Controls.Add(this.cmbUrunKategori);
+            this.gbUrun.Controls.Add(this.nuFiyat);
+            this.gbUrun.Location = new System.Drawing.Point(168, 12);
+            this.gbUrun.Name = "gbUrun";
+            this.gbUrun.Size = new System.Drawing.Size(359, 249);
+            this.gbUrun.TabIndex = 9;
+            this.gbUrun.TabStop = false;
+            this.gbUrun.Text = "Ürün";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(787, 405);
-            this.Controls.Add(this.lstUrunler);
+            this.Controls.Add(this.gbUrun);
             this.Controls.Add(this.btnKatKaydet);
             this.Controls.Add(this.txtAciklama);
             this.Controls.Add(this.txtKategoriAdi);
@@ -98,6 +158,9 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ep1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nuFiyat)).EndInit();
+            this.gbUrun.ResumeLayout(false);
+            this.gbUrun.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -111,6 +174,11 @@
         private System.Windows.Forms.Button btnKatKaydet;
         private System.Windows.Forms.ErrorProvider ep1;
         private System.Windows.Forms.ListBox lstUrunler;
+        private System.Windows.Forms.Button btnUrunGuncelle;
+        private System.Windows.Forms.ComboBox cmbUrunKategori;
+        private System.Windows.Forms.NumericUpDown nuFiyat;
+        private System.Windows.Forms.TextBox txtUrunAdi;
+        private System.Windows.Forms.GroupBox gbUrun;
     }
 }
 

@@ -27,7 +27,7 @@ namespace EF_TemelCrudIslemleri
         private void KategorileriGetir()
         {
             NorthwindEntities db = new NorthwindEntities();
-            cmbKategori.DataSource = db.Categories
+            var kategoriler1 = db.Categories
                 .OrderBy(x => x.CategoryName)
                 .Select(x => new CategoryViewModel()
                 {
@@ -36,6 +36,19 @@ namespace EF_TemelCrudIslemleri
                     ProductCount = x.Products.Count
                 })
                 .ToList();
+            var kategoriler2 = db.Categories
+                .OrderBy(x => x.CategoryName)
+                .Select(x => new CategoryViewModel()
+                {
+                    CategoryID = x.CategoryID,
+                    CategoryName = x.CategoryName,
+                    ProductCount = x.Products.Count
+                })
+                .ToList();
+
+            cmbUrunKategori.DataSource = kategoriler2;
+            cmbKategori.DataSource = kategoriler1;
+            
             //cmbKategori.DisplayMember = "CategoryName";
             //cmbKategori.ValueMember = "CategoryID";
         }
@@ -85,8 +98,7 @@ namespace EF_TemelCrudIslemleri
             //    .OrderBy(x => x.ProductName)
             //    .ToList();
             //lstUrunler.DisplayMember = "ProductName";
-
-            lstUrunler.DataSource = db.Categories
+            var sorgu = db.Categories
                 .First(x => x.CategoryID == cat.CategoryID)
                 .Products
                 .Select(x => new ProductViewModel()
@@ -97,6 +109,65 @@ namespace EF_TemelCrudIslemleri
                 })
                 .OrderBy(x => x.ProductName)
                 .ToList();
+            lstUrunler.DataSource = sorgu;
+            gbUrun.Visible = sorgu.Count > 0;
+        }
+
+        private void lstUrunler_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstUrunler.SelectedItem == null) return;
+
+            var seciliUrun = lstUrunler.SelectedItem as ProductViewModel;
+
+            NorthwindEntities db = new NorthwindEntities();
+            var urun = db.Products.Find(seciliUrun.ProductID);
+            txtUrunAdi.Text = urun.ProductName;
+            //nuFiyat.Value = urun.UnitPrice.HasValue? urun.UnitPrice.Value:0;
+            nuFiyat.Value = urun.UnitPrice ?? 0;
+            //nuFiyat.Value = urun.UnitPrice.GetValueOrDefault();
+
+            var uruncatlist = cmbUrunKategori.DataSource as List<CategoryViewModel>;
+            foreach (var item in uruncatlist)
+            {
+                if (item.CategoryID == urun.CategoryID)
+                {
+                    cmbUrunKategori.SelectedItem = item;
+                    break;
+                }
+            }
+        }
+
+        private void btnUrunGuncelle_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ep1.Clear();
+                NorthwindEntities db = new NorthwindEntities();
+                var seciliUrun = lstUrunler.SelectedItem as ProductViewModel;
+                var urun = db.Products.Find(seciliUrun.ProductID);
+                urun.ProductName = txtUrunAdi.Text;
+                urun.UnitPrice = nuFiyat.Value;
+                urun.CategoryID = (cmbUrunKategori.SelectedItem as CategoryViewModel).CategoryID;
+                int sonuc = db.SaveChanges();
+                KategorileriGetir();
+                MessageBox.Show($"{sonuc} urun guncellendi");
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var validationError in ex.EntityValidationErrors)
+                {
+                    foreach (var error in validationError.ValidationErrors)
+                    {
+                        if (error.PropertyName == "ProductName")
+                            ep1.SetError(txtUrunAdi, error.ErrorMessage);
+                    }
+                }
+                MessageBox.Show(EntityHelper.ValidationMessage(ex), "Bir Hata Olustu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
