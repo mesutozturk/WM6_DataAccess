@@ -37,21 +37,21 @@
             this.çıkartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.güncelleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pSepetGuncelle = new System.Windows.Forms.Panel();
-            this.nAdet = new System.Windows.Forms.NumericUpDown();
-            this.nOran = new System.Windows.Forms.NumericUpDown();
             this.btnGuncelle = new System.Windows.Forms.Button();
+            this.nOran = new System.Windows.Forms.NumericUpDown();
+            this.nAdet = new System.Windows.Forms.NumericUpDown();
             this.cmbMusteri = new System.Windows.Forms.ComboBox();
             this.cmbNakliye = new System.Windows.Forms.ComboBox();
             this.cmbCalisan = new System.Windows.Forms.ComboBox();
             this.dtpTarih = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTutar = new System.Windows.Forms.Label();
             this.nNakliyeUcreti = new System.Windows.Forms.NumericUpDown();
             this.txtAdres = new System.Windows.Forms.TextBox();
             this.btnSiparisVer = new System.Windows.Forms.Button();
             this.cmsSepet.SuspendLayout();
             this.pSepetGuncelle.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nAdet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nOran)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nAdet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nNakliyeUcreti)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,6 +69,7 @@
             this.txtAra.Name = "txtAra";
             this.txtAra.Size = new System.Drawing.Size(182, 20);
             this.txtAra.TabIndex = 6;
+            this.txtAra.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtAra_KeyUp);
             // 
             // btnSepeteEkle
             // 
@@ -78,6 +79,7 @@
             this.btnSepeteEkle.TabIndex = 7;
             this.btnSepeteEkle.Text = "Sepete Ekle";
             this.btnSepeteEkle.UseVisualStyleBackColor = true;
+            this.btnSepeteEkle.Click += new System.EventHandler(this.btnSepeteEkle_Click);
             // 
             // lstSepet
             // 
@@ -99,14 +101,16 @@
             // çıkartToolStripMenuItem
             // 
             this.çıkartToolStripMenuItem.Name = "çıkartToolStripMenuItem";
-            this.çıkartToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.çıkartToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.çıkartToolStripMenuItem.Text = "Çıkart";
+            this.çıkartToolStripMenuItem.Click += new System.EventHandler(this.çıkartToolStripMenuItem_Click);
             // 
             // güncelleToolStripMenuItem
             // 
             this.güncelleToolStripMenuItem.Name = "güncelleToolStripMenuItem";
-            this.güncelleToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.güncelleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.güncelleToolStripMenuItem.Text = "Güncelle";
+            this.güncelleToolStripMenuItem.Click += new System.EventHandler(this.güncelleToolStripMenuItem_Click);
             // 
             // pSepetGuncelle
             // 
@@ -119,12 +123,15 @@
             this.pSepetGuncelle.TabIndex = 10;
             this.pSepetGuncelle.Visible = false;
             // 
-            // nAdet
+            // btnGuncelle
             // 
-            this.nAdet.Location = new System.Drawing.Point(18, 17);
-            this.nAdet.Name = "nAdet";
-            this.nAdet.Size = new System.Drawing.Size(81, 20);
-            this.nAdet.TabIndex = 0;
+            this.btnGuncelle.Location = new System.Drawing.Point(18, 71);
+            this.btnGuncelle.Name = "btnGuncelle";
+            this.btnGuncelle.Size = new System.Drawing.Size(81, 23);
+            this.btnGuncelle.TabIndex = 2;
+            this.btnGuncelle.Text = "Güncelle";
+            this.btnGuncelle.UseVisualStyleBackColor = true;
+            this.btnGuncelle.Click += new System.EventHandler(this.btnGuncelle_Click);
             // 
             // nOran
             // 
@@ -139,14 +146,12 @@
             this.nOran.Size = new System.Drawing.Size(81, 20);
             this.nOran.TabIndex = 1;
             // 
-            // btnGuncelle
+            // nAdet
             // 
-            this.btnGuncelle.Location = new System.Drawing.Point(18, 71);
-            this.btnGuncelle.Name = "btnGuncelle";
-            this.btnGuncelle.Size = new System.Drawing.Size(81, 23);
-            this.btnGuncelle.TabIndex = 2;
-            this.btnGuncelle.Text = "Güncelle";
-            this.btnGuncelle.UseVisualStyleBackColor = true;
+            this.nAdet.Location = new System.Drawing.Point(18, 17);
+            this.nAdet.Name = "nAdet";
+            this.nAdet.Size = new System.Drawing.Size(81, 20);
+            this.nAdet.TabIndex = 0;
             // 
             // cmbMusteri
             // 
@@ -179,16 +184,16 @@
             this.dtpTarih.Size = new System.Drawing.Size(171, 20);
             this.dtpTarih.TabIndex = 12;
             // 
-            // label1
+            // lblTutar
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(201, 367);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(208, 18);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "Sipariş Tutarı : 0 ₺";
+            this.lblTutar.AutoSize = true;
+            this.lblTutar.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblTutar.ForeColor = System.Drawing.Color.Red;
+            this.lblTutar.Location = new System.Drawing.Point(201, 367);
+            this.lblTutar.Name = "lblTutar";
+            this.lblTutar.Size = new System.Drawing.Size(208, 18);
+            this.lblTutar.TabIndex = 13;
+            this.lblTutar.Text = "Sipariş Tutarı : 0 ₺";
             // 
             // nNakliyeUcreti
             // 
@@ -220,7 +225,7 @@
             this.ClientSize = new System.Drawing.Size(637, 414);
             this.Controls.Add(this.btnSiparisVer);
             this.Controls.Add(this.txtAdres);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblTutar);
             this.Controls.Add(this.nNakliyeUcreti);
             this.Controls.Add(this.dtpTarih);
             this.Controls.Add(this.cmbCalisan);
@@ -233,10 +238,11 @@
             this.Controls.Add(this.lstUrunler);
             this.Name = "SiparisForm";
             this.Text = "SiparisForm";
+            this.Load += new System.EventHandler(this.SiparisForm_Load);
             this.cmsSepet.ResumeLayout(false);
             this.pSepetGuncelle.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nAdet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nOran)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nAdet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nNakliyeUcreti)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -260,7 +266,7 @@
         private System.Windows.Forms.ComboBox cmbNakliye;
         private System.Windows.Forms.ComboBox cmbCalisan;
         private System.Windows.Forms.DateTimePicker dtpTarih;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTutar;
         private System.Windows.Forms.NumericUpDown nNakliyeUcreti;
         private System.Windows.Forms.TextBox txtAdres;
         private System.Windows.Forms.Button btnSiparisVer;
