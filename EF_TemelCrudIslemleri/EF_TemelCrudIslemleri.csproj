@@ -99,6 +99,12 @@
     <Compile Include="Shipper.cs">
       <DependentUpon>NorthModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SiparisForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SiparisForm.Designer.cs">
+      <DependentUpon>SiparisForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -113,6 +119,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SiparisForm.resx">
+      <DependentUpon>SiparisForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EntityDeploy Include="NorthModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>NorthModel.Designer.cs</LastGenOutput>
