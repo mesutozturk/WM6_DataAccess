@@ -13,7 +13,7 @@ namespace EF_CF1.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201812270850534_a1"; }
+            get { return "201812271013335_a1"; }
         }
         
         string IMigrationMetadata.Source

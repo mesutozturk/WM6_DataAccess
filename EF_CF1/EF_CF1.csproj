@@ -53,15 +53,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Kategori.cs" />
+    <Compile Include="Entities\Urun.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812270850534_a1.cs" />
-    <Compile Include="Migrations\201812270850534_a1.Designer.cs">
-      <DependentUpon>201812270850534_a1.cs</DependentUpon>
+    <Compile Include="Migrations\201812271013335_a1.cs" />
+    <Compile Include="Migrations\201812271013335_a1.Designer.cs">
+      <DependentUpon>201812271013335_a1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812271024113_urunlertablosueklendi.cs" />
+    <Compile Include="Migrations\201812271024113_urunlertablosueklendi.Designer.cs">
+      <DependentUpon>201812271024113_urunlertablosueklendi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812271035027_urunadiuniqe.cs" />
+    <Compile Include="Migrations\201812271035027_urunadiuniqe.Designer.cs">
+      <DependentUpon>201812271035027_urunadiuniqe.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyContext.cs" />
@@ -70,8 +79,14 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812270850534_a1.resx">
-      <DependentUpon>201812270850534_a1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812271013335_a1.resx">
+      <DependentUpon>201812271013335_a1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812271024113_urunlertablosueklendi.resx">
+      <DependentUpon>201812271024113_urunlertablosueklendi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812271035027_urunadiuniqe.resx">
+      <DependentUpon>201812271035027_urunadiuniqe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
