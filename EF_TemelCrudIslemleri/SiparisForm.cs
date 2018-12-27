@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using EF_TemelCrudIslemleri.BLL;
 using EF_TemelCrudIslemleri.ViewModels;
 
 namespace EF_TemelCrudIslemleri
@@ -125,7 +126,7 @@ namespace EF_TemelCrudIslemleri
 
         private void çıkartToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(lstSepet.SelectedItem==null) return;
+            if (lstSepet.SelectedItem == null) return;
 
             var seciliSepet1 = lstSepet.SelectedItem as SepetViewModel;
 
@@ -159,6 +160,38 @@ namespace EF_TemelCrudIslemleri
             pSepetGuncelle.Visible = false;
             seciliSepet = null;
             SepetHesapla();
+        }
+
+        private void btnSiparisVer_Click(object sender, EventArgs e)
+        {
+            if (!sepet.Any())
+            {
+                MessageBox.Show("Lutfen sepete urun ekleyiniz");
+                return;
+            }
+
+            try
+            {
+                var orderBusiness = new OrderBusines();
+                var cartModel = new CartViewModel()
+                {
+                    CartModel = sepet,
+                    Freight = nNakliyeUcreti.Value,
+                    RequiredDate = dtpTarih.Value,
+                    EmployeeID = (cmbCalisan.SelectedItem as Employee).EmployeeID,
+                    CustomerID = (cmbMusteri.SelectedItem as Customer).CustomerID,
+                    ShipVia = (cmbNakliye.SelectedItem as Shipper).ShipperID
+                };
+
+                var sipNo = orderBusiness.MakeOrder(cartModel);
+                MessageBox.Show($"{sipNo}'nolu Siparisiniz basariyla olusturulmustur", "Siparis", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                sepet=new List<SepetViewModel>();
+                SepetHesapla();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

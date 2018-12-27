@@ -101,14 +101,14 @@
             // çıkartToolStripMenuItem
             // 
             this.çıkartToolStripMenuItem.Name = "çıkartToolStripMenuItem";
-            this.çıkartToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.çıkartToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.çıkartToolStripMenuItem.Text = "Çıkart";
             this.çıkartToolStripMenuItem.Click += new System.EventHandler(this.çıkartToolStripMenuItem_Click);
             // 
             // güncelleToolStripMenuItem
             // 
             this.güncelleToolStripMenuItem.Name = "güncelleToolStripMenuItem";
-            this.güncelleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.güncelleToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.güncelleToolStripMenuItem.Text = "Güncelle";
             this.güncelleToolStripMenuItem.Click += new System.EventHandler(this.güncelleToolStripMenuItem_Click);
             // 
@@ -217,6 +217,7 @@
             this.btnSiparisVer.TabIndex = 15;
             this.btnSiparisVer.Text = "Sipariş Oluştur";
             this.btnSiparisVer.UseVisualStyleBackColor = true;
+            this.btnSiparisVer.Click += new System.EventHandler(this.btnSiparisVer_Click);
             // 
             // SiparisForm
             // 

@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\OrderBusines.cs" />
     <Compile Include="Category.cs">
       <DependentUpon>NorthModel.tt</DependentUpon>
     </Compile>
@@ -106,6 +107,7 @@
     <Compile Include="SiparisForm.Designer.cs">
       <DependentUpon>SiparisForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\CartViewModel.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
