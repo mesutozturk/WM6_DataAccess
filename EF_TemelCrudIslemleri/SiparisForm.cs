@@ -178,9 +178,10 @@ namespace EF_TemelCrudIslemleri
                     CartModel = sepet,
                     Freight = nNakliyeUcreti.Value,
                     RequiredDate = dtpTarih.Value,
-                    EmployeeID = (cmbCalisan.SelectedItem as Employee).EmployeeID,
+                    EmployeeID = (cmbCalisan.SelectedItem as EmployeeViewModel).EmployeeID,
                     CustomerID = (cmbMusteri.SelectedItem as Customer).CustomerID,
-                    ShipVia = (cmbNakliye.SelectedItem as Shipper).ShipperID
+                    ShipVia = (cmbNakliye.SelectedItem as Shipper).ShipperID,
+                    Address = txtAdres.Text
                 };
 
                 var sipNo = orderBusiness.MakeOrder(cartModel);

@@ -12,5 +12,6 @@ namespace EF_TemelCrudIslemleri.ViewModels
         public decimal Freight { get; set; }
         public DateTime RequiredDate { get; set; }
         public DateTime OrderDate { get; private set; } = DateTime.Now;
+        public string Address { get; set; }
     }
 }
