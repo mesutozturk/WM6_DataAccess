@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Kuzey.BLL;
+using Kuzey.BLL.Repository;
 using Kuzey.Models.Entities;
 
 namespace Kuzey.WFA
@@ -27,19 +28,27 @@ namespace Kuzey.WFA
         private void KategorileriGetir()
         {
             var db = new KategoriRepo();
-            List<Kategori> kategoriler = db.KategorileriGetir();
+            List<Kategori> kategoriler = db.GetAll();
             listBox1.DataSource = kategoriler;
             listBox1.DisplayMember = "KategoriAdi";
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var db = new KategoriRepo();
-            db.KategoriEkle(new Kategori()
+            var kategoriRepo = new KategoriRepo();
+            kategoriRepo.Insert(new Kategori()
             {
-                KategoriAdi = "flana",
+                KategoriAdi = "asdasd",
             });
             KategorileriGetir();
+
+            new UrunRepo()
+                .Insert(new Urun()
+                {
+                    Fiyat = 3,
+                    UrunAdi = "alfmakmf",
+                    KategoriId = kategoriRepo.GetAll().First().Id
+                });
         }
     }
 }

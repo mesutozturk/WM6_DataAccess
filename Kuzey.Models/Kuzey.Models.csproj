@@ -51,11 +51,11 @@
     <Compile Include="Entities\Kategori.cs" />
     <Compile Include="Entities\Urun.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\SiparisViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstracts\" />
     <Folder Include="Enums\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
