@@ -49,6 +49,8 @@ namespace Kuzey.WFA
                     UrunAdi = "alfmakmf",
                     KategoriId = kategoriRepo.GetAll().First().Id
                 });
+            var urulerim = new UrunRepo()
+                .GetQueryList(x => x.UrunAdi.StartsWith("a")&&x.Kategori.KategoriAdi.StartsWith("a"));
         }
     }
 }

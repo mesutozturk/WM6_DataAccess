@@ -28,6 +28,18 @@ namespace Kuzey.BLL.Repository
             }
         }
 
+        public virtual List<T> GetQueryList(Func<T, bool> predicate)
+        {
+            try
+            {
+                return db.Set<T>().Where(predicate).ToList();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public virtual T GetById(TId id)
         {
             try
