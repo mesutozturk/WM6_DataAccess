@@ -50,7 +50,16 @@ namespace Kuzey.WFA
                     KategoriId = kategoriRepo.GetAll().First().Id
                 });
             var urulerim = new UrunRepo()
-                .GetQueryList(x => x.UrunAdi.StartsWith("a")&&x.Kategori.KategoriAdi.StartsWith("a"));
+                .GetAll(x => x.UrunAdi.StartsWith("a") && x.Kategori.KategoriAdi.StartsWith("a"));
+
+            var urunler = new UrunRepo().Queryable();
+            var kategoriler = new KategoriRepo().Queryable();
+
+            var query = from urun in urunler
+                        join kategori in kategoriler on urun.KategoriId equals kategori.Id
+                        where urun.UrunAdi.StartsWith("a") && kategori.KategoriAdi.StartsWith("a")
+                        select new { kategori.KategoriAdi, urun.UrunAdi };
+            
         }
     }
 }

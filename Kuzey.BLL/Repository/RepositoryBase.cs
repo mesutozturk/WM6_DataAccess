@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +29,19 @@ namespace Kuzey.BLL.Repository
             }
         }
 
-        public virtual List<T> GetQueryList(Func<T, bool> predicate)
+        public virtual IQueryable<T> Queryable()
+        {
+            try
+            {
+                return db.Set<T>().AsQueryable();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public virtual List<T> GetAll(Func<T, bool> predicate)
         {
             try
             {
