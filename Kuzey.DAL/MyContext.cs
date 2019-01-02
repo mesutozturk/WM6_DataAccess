@@ -9,6 +9,14 @@ namespace Kuzey.DAL
         {
         }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Urun>()
+                .Property(x => x.Fiyat)
+                .HasPrecision(10, 4);
+        }
+
         public virtual DbSet<Kategori> Kategoriler { get; set; }
         public virtual DbSet<Urun> Urunler { get; set; }
     }

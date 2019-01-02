@@ -15,6 +15,7 @@ namespace Kuzey.Models.Entities
         public string UrunAdi { get; set; }
         public decimal Fiyat { get; set; }
         public int KategoriId { get; set; }
+        public int Stok { get; set; }
 
         [ForeignKey("KategoriId")]
         public virtual Kategori Kategori { get; set; }
