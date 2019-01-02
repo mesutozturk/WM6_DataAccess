@@ -59,7 +59,10 @@ namespace Kuzey.WFA
                         join kategori in kategoriler on urun.KategoriId equals kategori.Id
                         where urun.UrunAdi.StartsWith("a") && kategori.KategoriAdi.StartsWith("a")
                         select new { kategori.KategoriAdi, urun.UrunAdi };
-            
+            using (kategoriRepo)
+            {
+
+            }
         }
     }
 }

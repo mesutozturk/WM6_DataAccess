@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Reverse.DAL;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Kuzey.DAL;
 
-namespace Kuzey.BLL.Repository
+namespace Reverse.BLL.Repository
 {
     public abstract class RepositoryBase<T, TId> : IDisposable where T : class
     {
