@@ -9,7 +9,7 @@ namespace Reverse.BLL.Repository
 {
     public abstract class RepositoryBase<T, TId> : IDisposable where T : class
     {
-        protected static MyContext db;
+        protected internal static MyContext db;
 
         protected RepositoryBase()
         {

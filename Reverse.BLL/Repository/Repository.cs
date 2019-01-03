@@ -14,6 +14,7 @@ namespace Reverse.BLL.Repository
 
     public class OrderDetailRepo : RepositoryBase<Order_Detail, int>
     {
+
     }
    public class ProductRepo : RepositoryBase<Product, int> { }
    public class ShipperRepo : RepositoryBase<Shipper, int> { }
