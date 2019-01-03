@@ -1,6 +1,6 @@
 ﻿namespace Otel.Models.Enums
 {
-    public enum RoomTypes
+    public enum RoomTypes : byte
     {
         Single,
         Double,

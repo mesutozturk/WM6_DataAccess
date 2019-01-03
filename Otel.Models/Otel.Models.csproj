@@ -50,6 +50,8 @@
   <ItemGroup>
     <Compile Include="Abstracts\BaseEntity.cs" />
     <Compile Include="Abstracts\BaseEntity2.cs" />
+    <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Reservation.cs" />
     <Compile Include="Entities\ReservationDetail.cs" />
     <Compile Include="Entities\Room.cs" />

@@ -49,6 +49,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\CategoryRepo.cs" />
+    <Compile Include="Repository\ProductRepo.cs" />
+    <Compile Include="Repository\RepositoryBase.cs" />
+    <Compile Include="Repository\ReservationDetailRepo.cs" />
+    <Compile Include="Repository\ReservationRepo.cs" />
+    <Compile Include="Repository\RoomCategoryRepo.cs" />
+    <Compile Include="Repository\RoomRepo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Otel.DAL\Otel.DAL.csproj">
