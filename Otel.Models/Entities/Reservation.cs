@@ -1,5 +1,7 @@
 ﻿using Otel.Models.Abstracts;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Otel.Models.Entities
@@ -9,12 +11,14 @@ namespace Otel.Models.Entities
     {
         public Reservation()
         {
-            this.Id=Guid.NewGuid();
+            this.Id = Guid.NewGuid();
         }
 
         public DateTime ReservationDate { get; set; }
         public DateTime? CheckOutDate { get; set; }
 
 
+        public virtual ICollection<ReservationDetail> ReservationDetails { get; set; } = new HashSet<ReservationDetail>();
+        public virtual ICollection<ReservationBill> ReservationBills { get; set; } = new HashSet<ReservationBill>();
     }
 }

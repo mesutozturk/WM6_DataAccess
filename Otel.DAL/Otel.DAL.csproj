@@ -51,6 +51,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201901040612382_computed.cs" />
+    <Compile Include="Migrations\201901040612382_computed.Designer.cs">
+      <DependentUpon>201901040612382_computed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901040617523_computed2.cs" />
+    <Compile Include="Migrations\201901040617523_computed2.Designer.cs">
+      <DependentUpon>201901040617523_computed2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901040622414_computed3.cs" />
+    <Compile Include="Migrations\201901040622414_computed3.Designer.cs">
+      <DependentUpon>201901040622414_computed3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,6 +76,17 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201901040612382_computed.resx">
+      <DependentUpon>201901040612382_computed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901040617523_computed2.resx">
+      <DependentUpon>201901040617523_computed2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901040622414_computed3.resx">
+      <DependentUpon>201901040622414_computed3.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

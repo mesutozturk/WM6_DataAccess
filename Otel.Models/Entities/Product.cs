@@ -25,5 +25,6 @@ namespace Otel.Models.Entities
 
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
+        public virtual ICollection<ReservationBill> ReservationBills { get; set; } = new HashSet<ReservationBill>();
     }
 }
