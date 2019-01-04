@@ -28,29 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Node8");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Node9");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Node5", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Node10");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Node11");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Node6", new System.Windows.Forms.TreeNode[] {
-            treeNode4,
-            treeNode5});
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Node7");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Node1", new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode6,
-            treeNode7});
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Node2");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Node3");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("asdasd", new System.Windows.Forms.TreeNode[] {
-            treeNode8,
-            treeNode9,
-            treeNode10});
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Node4");
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Node12");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Node8");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Node9");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Node5", new System.Windows.Forms.TreeNode[] {
+            treeNode14,
+            treeNode15});
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Node10");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Node11");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Node6", new System.Windows.Forms.TreeNode[] {
+            treeNode17,
+            treeNode18});
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Node7");
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Node1", new System.Windows.Forms.TreeNode[] {
+            treeNode16,
+            treeNode19,
+            treeNode20});
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Node2");
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Node3");
+            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("asdasd", new System.Windows.Forms.TreeNode[] {
+            treeNode21,
+            treeNode22,
+            treeNode23});
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Node4");
+            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Node12");
             this.tvCategory = new System.Windows.Forms.TreeView();
             this.cmbKategori = new System.Windows.Forms.ComboBox();
             this.txtKategoriAdi = new System.Windows.Forms.TextBox();
@@ -61,6 +61,7 @@
             this.nFiyat = new System.Windows.Forms.NumericUpDown();
             this.cbSatistaMi = new System.Windows.Forms.CheckBox();
             this.btnUrunKaydet = new System.Windows.Forms.Button();
+            this.btnRezervasyonlar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nFiyat)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,36 +70,36 @@
             this.tvCategory.FullRowSelect = true;
             this.tvCategory.Location = new System.Drawing.Point(180, 13);
             this.tvCategory.Name = "tvCategory";
-            treeNode1.Name = "Node8";
-            treeNode1.Text = "Node8";
-            treeNode2.Name = "Node9";
-            treeNode2.Text = "Node9";
-            treeNode3.Name = "Node5";
-            treeNode3.Text = "Node5";
-            treeNode4.Name = "Node10";
-            treeNode4.Text = "Node10";
-            treeNode5.Name = "Node11";
-            treeNode5.Text = "Node11";
-            treeNode6.Name = "Node6";
-            treeNode6.Text = "Node6";
-            treeNode7.Name = "Node7";
-            treeNode7.Text = "Node7";
-            treeNode8.Name = "Node1";
-            treeNode8.Text = "Node1";
-            treeNode9.Name = "Node2";
-            treeNode9.Text = "Node2";
-            treeNode10.Name = "Node3";
-            treeNode10.Text = "Node3";
-            treeNode11.Name = "Node0";
-            treeNode11.Text = "asdasd";
-            treeNode12.Name = "Node4";
-            treeNode12.Text = "Node4";
-            treeNode13.Name = "Node12";
-            treeNode13.Text = "Node12";
+            treeNode14.Name = "Node8";
+            treeNode14.Text = "Node8";
+            treeNode15.Name = "Node9";
+            treeNode15.Text = "Node9";
+            treeNode16.Name = "Node5";
+            treeNode16.Text = "Node5";
+            treeNode17.Name = "Node10";
+            treeNode17.Text = "Node10";
+            treeNode18.Name = "Node11";
+            treeNode18.Text = "Node11";
+            treeNode19.Name = "Node6";
+            treeNode19.Text = "Node6";
+            treeNode20.Name = "Node7";
+            treeNode20.Text = "Node7";
+            treeNode21.Name = "Node1";
+            treeNode21.Text = "Node1";
+            treeNode22.Name = "Node2";
+            treeNode22.Text = "Node2";
+            treeNode23.Name = "Node3";
+            treeNode23.Text = "Node3";
+            treeNode24.Name = "Node0";
+            treeNode24.Text = "asdasd";
+            treeNode25.Name = "Node4";
+            treeNode25.Text = "Node4";
+            treeNode26.Name = "Node12";
+            treeNode26.Text = "Node12";
             this.tvCategory.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode11,
-            treeNode12,
-            treeNode13});
+            treeNode24,
+            treeNode25,
+            treeNode26});
             this.tvCategory.Size = new System.Drawing.Size(252, 450);
             this.tvCategory.TabIndex = 0;
             this.tvCategory.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvCategory_AfterSelect);
@@ -184,11 +185,22 @@
             this.btnUrunKaydet.UseVisualStyleBackColor = true;
             this.btnUrunKaydet.Click += new System.EventHandler(this.btnUrunKaydet_Click);
             // 
+            // btnRezervasyonlar
+            // 
+            this.btnRezervasyonlar.Location = new System.Drawing.Point(439, 332);
+            this.btnRezervasyonlar.Name = "btnRezervasyonlar";
+            this.btnRezervasyonlar.Size = new System.Drawing.Size(169, 131);
+            this.btnRezervasyonlar.TabIndex = 10;
+            this.btnRezervasyonlar.Text = "Rezervasyonlar";
+            this.btnRezervasyonlar.UseVisualStyleBackColor = true;
+            this.btnRezervasyonlar.Click += new System.EventHandler(this.btnRezervasyonlar_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(799, 475);
+            this.ClientSize = new System.Drawing.Size(620, 484);
+            this.Controls.Add(this.btnRezervasyonlar);
             this.Controls.Add(this.btnUrunKaydet);
             this.Controls.Add(this.cbSatistaMi);
             this.Controls.Add(this.nFiyat);
@@ -220,6 +232,7 @@
         private System.Windows.Forms.NumericUpDown nFiyat;
         private System.Windows.Forms.CheckBox cbSatistaMi;
         private System.Windows.Forms.Button btnUrunKaydet;
+        private System.Windows.Forms.Button btnRezervasyonlar;
     }
 }
 

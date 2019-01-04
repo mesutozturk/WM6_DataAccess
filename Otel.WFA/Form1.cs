@@ -152,5 +152,19 @@ namespace Otel.WFA
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private FrmRezervasyon rezervasyonForm;
+        private void btnRezervasyonlar_Click(object sender, EventArgs e)
+        {
+            if (rezervasyonForm == null || rezervasyonForm.IsDisposed)
+            {
+                rezervasyonForm = new FrmRezervasyon
+                {
+                    Text = "Rezervasyon Form",
+                    StartPosition = FormStartPosition.CenterScreen
+                };
+                rezervasyonForm.Show();
+            }
+        }
     }
 }
