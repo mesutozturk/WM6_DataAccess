@@ -56,12 +56,18 @@
             this.txtKategoriAdi = new System.Windows.Forms.TextBox();
             this.txtAciklama = new System.Windows.Forms.RichTextBox();
             this.btnKategoriKaydet = new System.Windows.Forms.Button();
+            this.lstUrunler = new System.Windows.Forms.ListBox();
+            this.txtUrunAdi = new System.Windows.Forms.TextBox();
+            this.nFiyat = new System.Windows.Forms.NumericUpDown();
+            this.cbSatistaMi = new System.Windows.Forms.CheckBox();
+            this.btnUrunKaydet = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.nFiyat)).BeginInit();
             this.SuspendLayout();
             // 
             // tvCategory
             // 
             this.tvCategory.FullRowSelect = true;
-            this.tvCategory.Location = new System.Drawing.Point(13, 13);
+            this.tvCategory.Location = new System.Drawing.Point(180, 13);
             this.tvCategory.Name = "tvCategory";
             treeNode1.Name = "Node8";
             treeNode1.Text = "Node8";
@@ -95,25 +101,26 @@
             treeNode13});
             this.tvCategory.Size = new System.Drawing.Size(252, 450);
             this.tvCategory.TabIndex = 0;
+            this.tvCategory.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvCategory_AfterSelect);
             // 
             // cmbKategori
             // 
             this.cmbKategori.FormattingEnabled = true;
-            this.cmbKategori.Location = new System.Drawing.Point(272, 13);
+            this.cmbKategori.Location = new System.Drawing.Point(12, 12);
             this.cmbKategori.Name = "cmbKategori";
             this.cmbKategori.Size = new System.Drawing.Size(162, 21);
             this.cmbKategori.TabIndex = 1;
             // 
             // txtKategoriAdi
             // 
-            this.txtKategoriAdi.Location = new System.Drawing.Point(272, 41);
+            this.txtKategoriAdi.Location = new System.Drawing.Point(12, 40);
             this.txtKategoriAdi.Name = "txtKategoriAdi";
             this.txtKategoriAdi.Size = new System.Drawing.Size(162, 20);
             this.txtKategoriAdi.TabIndex = 2;
             // 
             // txtAciklama
             // 
-            this.txtAciklama.Location = new System.Drawing.Point(272, 68);
+            this.txtAciklama.Location = new System.Drawing.Point(12, 67);
             this.txtAciklama.Name = "txtAciklama";
             this.txtAciklama.Size = new System.Drawing.Size(162, 111);
             this.txtAciklama.TabIndex = 3;
@@ -121,7 +128,7 @@
             // 
             // btnKategoriKaydet
             // 
-            this.btnKategoriKaydet.Location = new System.Drawing.Point(272, 186);
+            this.btnKategoriKaydet.Location = new System.Drawing.Point(12, 185);
             this.btnKategoriKaydet.Name = "btnKategoriKaydet";
             this.btnKategoriKaydet.Size = new System.Drawing.Size(162, 39);
             this.btnKategoriKaydet.TabIndex = 4;
@@ -129,11 +136,64 @@
             this.btnKategoriKaydet.UseVisualStyleBackColor = true;
             this.btnKategoriKaydet.Click += new System.EventHandler(this.btnKategoriKaydet_Click);
             // 
+            // lstUrunler
+            // 
+            this.lstUrunler.FormattingEnabled = true;
+            this.lstUrunler.Location = new System.Drawing.Point(438, 13);
+            this.lstUrunler.Name = "lstUrunler";
+            this.lstUrunler.Size = new System.Drawing.Size(167, 134);
+            this.lstUrunler.TabIndex = 5;
+            // 
+            // txtUrunAdi
+            // 
+            this.txtUrunAdi.Location = new System.Drawing.Point(439, 154);
+            this.txtUrunAdi.Name = "txtUrunAdi";
+            this.txtUrunAdi.Size = new System.Drawing.Size(166, 20);
+            this.txtUrunAdi.TabIndex = 6;
+            // 
+            // nFiyat
+            // 
+            this.nFiyat.DecimalPlaces = 2;
+            this.nFiyat.Location = new System.Drawing.Point(439, 181);
+            this.nFiyat.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.nFiyat.Name = "nFiyat";
+            this.nFiyat.Size = new System.Drawing.Size(166, 20);
+            this.nFiyat.TabIndex = 7;
+            // 
+            // cbSatistaMi
+            // 
+            this.cbSatistaMi.AutoSize = true;
+            this.cbSatistaMi.Location = new System.Drawing.Point(438, 207);
+            this.cbSatistaMi.Name = "cbSatistaMi";
+            this.cbSatistaMi.Size = new System.Drawing.Size(78, 17);
+            this.cbSatistaMi.TabIndex = 8;
+            this.cbSatistaMi.Text = "Satışta Mı?";
+            this.cbSatistaMi.UseVisualStyleBackColor = true;
+            // 
+            // btnUrunKaydet
+            // 
+            this.btnUrunKaydet.Location = new System.Drawing.Point(439, 231);
+            this.btnUrunKaydet.Name = "btnUrunKaydet";
+            this.btnUrunKaydet.Size = new System.Drawing.Size(166, 39);
+            this.btnUrunKaydet.TabIndex = 9;
+            this.btnUrunKaydet.Text = "Kaydet";
+            this.btnUrunKaydet.UseVisualStyleBackColor = true;
+            this.btnUrunKaydet.Click += new System.EventHandler(this.btnUrunKaydet_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(799, 475);
+            this.Controls.Add(this.btnUrunKaydet);
+            this.Controls.Add(this.cbSatistaMi);
+            this.Controls.Add(this.nFiyat);
+            this.Controls.Add(this.txtUrunAdi);
+            this.Controls.Add(this.lstUrunler);
             this.Controls.Add(this.btnKategoriKaydet);
             this.Controls.Add(this.txtAciklama);
             this.Controls.Add(this.txtKategoriAdi);
@@ -142,6 +202,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.nFiyat)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -154,6 +215,11 @@
         private System.Windows.Forms.TextBox txtKategoriAdi;
         private System.Windows.Forms.RichTextBox txtAciklama;
         private System.Windows.Forms.Button btnKategoriKaydet;
+        private System.Windows.Forms.ListBox lstUrunler;
+        private System.Windows.Forms.TextBox txtUrunAdi;
+        private System.Windows.Forms.NumericUpDown nFiyat;
+        private System.Windows.Forms.CheckBox cbSatistaMi;
+        private System.Windows.Forms.Button btnUrunKaydet;
     }
 }
 

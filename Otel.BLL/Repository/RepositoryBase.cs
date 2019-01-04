@@ -9,7 +9,7 @@ using Otel.Models.Abstracts;
 
 namespace Otel.BLL.Repository
 {
-    public class RepositoryBase<T, TId> where T : BaseEntity<TId>
+    public class RepositoryBase<T, TId>:IDisposable where T : BaseEntity<TId>
     {
         protected internal static MyContext db;
 
@@ -127,6 +127,7 @@ namespace Otel.BLL.Repository
         public void Dispose()
         {
             GC.SuppressFinalize(this);
+            db.Dispose();
             db = new MyContext();
         }
     }

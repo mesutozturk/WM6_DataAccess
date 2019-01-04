@@ -18,5 +18,6 @@ namespace Otel.Models.Entities
         [ForeignKey("SupCategoryId")]
         public virtual Category SupCategory { get; set; }
         public virtual ICollection<Category> Categories { get; set; } = new HashSet<Category>();
+        public virtual ICollection<Product> Products { get; set; } = new HashSet<Product>();
     }
 }

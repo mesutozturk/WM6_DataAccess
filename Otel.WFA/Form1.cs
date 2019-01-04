@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Otel.BLL.Repository;
+﻿using Otel.BLL.Repository;
 using Otel.Models.Entities;
 using Otel.Models.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Windows.Forms;
 using Exception = System.Exception;
 
 namespace Otel.WFA
@@ -33,6 +29,7 @@ namespace Otel.WFA
                     Description = txtAciklama.Text,
                     SupCategoryId = selectedCat.Id == 0 ? (int?)null : selectedCat.Id
                 });
+                MessageBox.Show("Kategori ekleme islemi basarili");
             }
             catch (Exception ex)
             {
@@ -77,14 +74,82 @@ namespace Otel.WFA
         private void GetCategoryTreeView()
         {
             tvCategory.Nodes.Clear();
-            var categories = new CategoryRepo().GetAll(x => x.SupCategoryId == null).OrderBy(x=>x.Name).ToList();
+            var categories = new CategoryRepo().GetAll(x => x.SupCategoryId == null).OrderBy(x => x.Name).ToList();
             foreach (var category in categories)
             {
-                tvCategory.Nodes.Add(category.Name);
+                TreeNode node = new TreeNode(category.Name)
+                {
+                    Tag = category.Id
+                };
+                tvCategory.Nodes.Add(node);
                 if (category.Categories.Count > 0)
                 {
-
+                    SetSubNodes(node, category.Categories.OrderBy(x => x.Name).ToList());
                 }
+            }
+            tvCategory.ExpandAll();
+        }
+
+        private void SetSubNodes(TreeNode node, List<Category> categories)
+        {
+            foreach (var category in categories)
+            {
+                TreeNode subNode = new TreeNode(category.Name)
+                {
+                    Tag = category.Id
+                };
+                node.Nodes.Add(subNode);
+                if (category.Categories.Count > 0)
+                {
+                    SetSubNodes(subNode, category.Categories.OrderBy(x => x.Name).ToList());
+                }
+            }
+        }
+
+        private int? categoryId;
+        private void tvCategory_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            categoryId = (int)e.Node.Tag;
+            var category = new CategoryRepo().GetById(categoryId.Value);
+            lstUrunler.DataSource = new ProductRepo()
+                .GetAll(x => x.CategoryId == categoryId)
+                .OrderBy(x => x.Name)
+                .Select(x => new ProductViewModel()
+                {
+                    Name = x.Name,
+                    Id = x.Id,
+                    CategoryId = x.CategoryId,
+                    IsActive = x.IsActive,
+                    Price = x.Price
+                })
+                .ToList();
+        }
+
+        private void btnUrunKaydet_Click(object sender, EventArgs e)
+        {
+            if (categoryId == null)
+            {
+                MessageBox.Show("Luften bir kategori seciniz");
+                return;
+            }
+            try
+            {
+                using (var productRepo = new ProductRepo())
+                {
+                    productRepo.Insert(new Product()
+                    {
+                        CategoryId = categoryId.Value,
+                        Name = txtUrunAdi.Text,
+                        Price = nFiyat.Value,
+                        IsActive = cbSatistaMi.Checked
+                    });
+                }
+
+                MessageBox.Show("Urun ekleme islemi basarili");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }
